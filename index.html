@@ -513,7 +513,9 @@
         });
         
         // Form submission handling
-        const formData = new FormData(form);
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
         
             const data = {};
             formData.forEach((value, key) => {
@@ -528,6 +530,7 @@
                     },
                     body: JSON.stringify(data)
                 });
+        
                 if (response.ok) {
                     alert('Merci pour votre candidature! Notre équipe vous contactera dans les 24 heures.');
                     form.reset();
